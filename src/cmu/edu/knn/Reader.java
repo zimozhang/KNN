@@ -4,7 +4,11 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+
+import cmu.edu.knn.DataSet;
 
 /**
  * This class is to read the origin files.
@@ -23,9 +27,9 @@ public class Reader {
 		BufferedReader trainReader = null;
 		ArrayList<DataSet> train = new ArrayList<DataSet>();
 		
-		
+		InputStream stream = Reader.class.getClassLoader().getResourceAsStream(filename);
 		try {
-			trainReader = new BufferedReader(new FileReader(filename));
+			trainReader = new BufferedReader(new InputStreamReader(stream, "utf-8"));
 
 			String line = trainReader.readLine();
 			String splitBy = ",";
