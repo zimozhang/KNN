@@ -27,48 +27,54 @@ public class KNN {
 		ArrayList<DataSet> train = reader.readDataFile("IrisTrain.csv");		
 		ArrayList<DataSet> test = reader.readDataFile("IrisTest.csv");
 
-		try {
-			String[] predict = new String[test.size()]; 
+		writeFile("IrisPredict.csv", k, train, test);
+		
+	}
+
+
+  public static void writeFile(String filename, int k, ArrayList<DataSet> train, ArrayList<DataSet> test) {
+    try {
+		String[] predict = new String[test.size()]; 
 			
 			//Write prediction data to a new csv file.
-			FileWriter fw = new FileWriter("IrisPredict.csv");
-			PrintWriter pw = new PrintWriter(fw);
+		FileWriter fw = new FileWriter(filename);
+		PrintWriter pw = new PrintWriter(fw);
 			
 			//Write the top and title of each column.
-			pw.print(k + "-nearest neignbors algorithm");
-			pw.println();
-			pw.print("Sepal length");
-			pw.print(",");
-			pw.print("Sepal width");
-			pw.print(",");
-			pw.print("Petal length");
-			pw.print(",");
-			pw.print("Petal width");
-			pw.print(",");
-			pw.print("Species prediction");
-			pw.println();
+		pw.print(k + "-nearest neignbors algorithm");
+		pw.println();
+		pw.print("Sepal length");
+		pw.print(",");
+		pw.print(" Sepal width");
+		pw.print(",");
+		pw.print(" Petal length  ");
+		pw.print(",");
+		pw.print(" Petal width  ");
+		pw.print(",");
+		pw.print(" Species prediction");
+		pw.println();
 			
 			//Write the test data and predict result by line.
-			for (int s=0; s<test.size();s++){
-				predict[s] = classify(k, train, test.get(s));
+		for (int s=0; s<test.size();s++){
+			predict[s] = classify(k, train, test.get(s));
 				
-				for (int i = 0; i < test.get(s).getdata().length; i++) {
-					pw.print(test.get(s).getdata()[i]);
-					pw.print(",");
-				}
-				
-				pw.print(predict[s]);
-				pw.println();
+			for (int i = 0; i < test.get(s).getdata().length; i++) {
+				pw.print(test.get(s).getdata()[i]);
+				pw.print(","+"                 ");
 			}
+				
+			pw.print(predict[s]);
+			pw.println();
+		}
 			
-			pw.flush();
+        		pw.flush();
 			pw.close();
 			fw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-	}
+            System.out.println("Finish writing!");
+}
 	
 	
 	/**
@@ -184,7 +190,7 @@ public class KNN {
 	 * Use the BufferedReader and InputStreamReader to read the input.
 	 * Get the k defined by user.
 	 */
-	private static String getInput(String prompt) {
+	public static String getInput(String prompt) {
 		BufferedReader stdin = new BufferedReader(
 				new InputStreamReader(System.in));
 

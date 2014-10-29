@@ -19,7 +19,7 @@ public class DataSet {
 	
 	public DataSet(double[] data, String type){
 		this.data = data;
-	    this.type = type;
+	  this.type = type;
 	}
 	
 	public double[] getdata() {return data;}

@@ -1,4 +1,4 @@
-3-nearest neignbors algorithm
+6-nearest neignbors algorithm
 Sepal length,Sepal width,Petal length,Petal width,Species prediction
 6.3,2.7,4.9,1.8,I.�versicolor
 6.7,3.3,5.7,2.1,I.�virginica
@@ -23,7 +23,7 @@ Sepal length,Sepal width,Petal length,Petal width,Species prediction
 6.8,3.2,5.9,2.3,I.�virginica
 6.7,3.3,5.7,2.5,I.�virginica
 6.7,3.0,5.2,2.3,I.�virginica
-6.3,2.5,5.0,1.9,I.�versicolor
+6.3,2.5,5.0,1.9,I.�virginica
 6.5,3.0,5.2,2.0,I.�virginica
 6.2,3.4,5.4,2.3,I.�virginica
 5.9,3.0,5.1,1.8,I.�versicolor
