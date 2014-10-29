@@ -28,6 +28,7 @@ public class Coordinate {
     
     public void addPoint(Point newPoint) {
 		pointsList.add(newPoint);
+                
     }
     
     public int[] projectPoint(double[] point) {
