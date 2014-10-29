@@ -23,13 +23,14 @@ import org.math.plot.*;
 public class KNN_plot extends javax.swing.JFrame {
 
     
-    private static final int SCALE = 30;
+    private static final int SCALE = 50;
     public ArrayList<DataSet> train;
     public ArrayList<DataSet> test;
     public int xias;
     public int yias;
     public int zias;
     public String xName;
+    public String yName;
     
 //    Coordinate coordinate = null;
     
@@ -85,8 +86,18 @@ public class KNN_plot extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         test4 = new javax.swing.JTextField();
         doTest = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        clearTyping = new javax.swing.JButton();
+        showTyping = new javax.swing.JButton();
+        doAgain = new javax.swing.JButton();
+        testSimple = new javax.swing.JButton();
+        back = new javax.swing.JButton();
+        clearTest = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("KNN-Plot");
@@ -94,7 +105,7 @@ public class KNN_plot extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        drawPanel.setBackground(new java.awt.Color(215, 247, 216));
+        drawPanel.setBackground(new java.awt.Color(254, 254, 254));
         drawPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         drawPanel.setForeground(new java.awt.Color(19, 34, 91));
 
@@ -102,7 +113,7 @@ public class KNN_plot extends javax.swing.JFrame {
         drawPanel.setLayout(drawPanelLayout);
         drawPanelLayout.setHorizontalGroup(
             drawPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 443, Short.MAX_VALUE)
+            .addGap(0, 557, Short.MAX_VALUE)
         );
         drawPanelLayout.setVerticalGroup(
             drawPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,12 +197,27 @@ public class KNN_plot extends javax.swing.JFrame {
 
         yButtonGroup.add(f6);
         f6.setText("Sepal width");
+        f6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                f6ActionPerformed(evt);
+            }
+        });
 
         yButtonGroup.add(f7);
         f7.setText("Petal length");
+        f7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                f7ActionPerformed(evt);
+            }
+        });
 
         yButtonGroup.add(f8);
         f8.setText("Petal width");
+        f8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                f8ActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Do KNN Test"));
 
@@ -220,10 +246,17 @@ public class KNN_plot extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("clear");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        clearTyping.setText("clear");
+        clearTyping.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                clearTypingActionPerformed(evt);
+            }
+        });
+
+        showTyping.setText("plot");
+        showTyping.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showTypingActionPerformed(evt);
             }
         });
 
@@ -242,34 +275,33 @@ public class KNN_plot extends javax.swing.JFrame {
                             .addComponent(jLabel8))
                         .addGap(3, 3, 3)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(test2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(test1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(test4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(test3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(test2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(showTyping, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(test1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(test4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(test3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(36, 36, 36)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(doTest)
-                                    .addComponent(jButton2)))))
+                                    .addComponent(clearTyping))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addComponent(jLabel4))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(test1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(clearTyping))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(doTest, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(test1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
@@ -278,107 +310,187 @@ public class KNN_plot extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(test3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
+                        .addGap(7, 7, 7)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
-                            .addComponent(test4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(27, Short.MAX_VALUE))
+                            .addComponent(test4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(showTyping)
+                        .addGap(18, 18, 18)
+                        .addComponent(doTest)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        jButton3.setText("Choose again");
+        doAgain.setText("Choose again");
+        doAgain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                doAgainActionPerformed(evt);
+            }
+        });
+
+        testSimple.setText("Show 10 neighbor");
+        testSimple.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                testSimpleActionPerformed(evt);
+            }
+        });
+
+        back.setText("back");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+
+        clearTest.setText("try again");
+        clearTest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearTestActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Show point");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("NOTES"));
+
+        jLabel9.setText("Blue: versicolor");
+
+        jLabel10.setText("Yellow: setosa");
+
+        jLabel11.setText("Green: virginica");
+
+        jLabel12.setText("Red: test point");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel12))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel10)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel11)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel12)
+                .addContainerGap(85, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jButton1)
-                                        .addGap(47, 47, 47)
-                                        .addComponent(jButton3))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(f6)
-                                            .addComponent(f5)
-                                            .addComponent(f7)
-                                            .addComponent(f8)))))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(f1))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(checkLength)
-                                    .addGap(18, 18, 18)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(f2)
-                                        .addComponent(testLength, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(f3)
-                                        .addComponent(f4)
-                                        .addComponent(testOne, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addComponent(f2)
+                            .addComponent(f1)
+                            .addComponent(f4)
+                            .addComponent(f3)))
+                    .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jButton1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(f6)
+                            .addComponent(f5)
+                            .addComponent(f7)
+                            .addComponent(f8)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(testLength, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(doAgain)
+                                .addComponent(testOne, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(checkLength)
+                    .addComponent(jLabel1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(testSimple)
+                        .addGap(12, 12, 12)
+                        .addComponent(clearTest))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(drawPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(drawPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(testOne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(checkLength)
-                            .addComponent(testLength, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(f1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(f2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(f3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(f4)
-                        .addGap(12, 12, 12)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(f5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(f6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(f7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(f8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton3))
-                        .addGap(42, 42, 42)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47)))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(drawPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(f1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(f2)
+                                .addGap(5, 5, 5)
+                                .addComponent(f3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(f4)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(f5))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(f6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(f7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(f8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jButton1)
+                                    .addComponent(doAgain))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(testLength, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(checkLength))
+                                .addGap(19, 19, 19)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(testOne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(testSimple)
+                                    .addComponent(jButton3)
+                                    .addComponent(clearTest))
+                                .addGap(35, 35, 35)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(back)))))
                 .addContainerGap())
         );
 
@@ -386,17 +498,17 @@ public class KNN_plot extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -444,17 +556,6 @@ public class KNN_plot extends javax.swing.JFrame {
             x[j]=trainData.get(j)[xias];
             y[j]=trainData.get(j)[yias];
             
-            if (train.get(j).gettype()=="I.�versicolor") {
-                g2d.setColor(Color.BLUE);
-            }
-             
-            if (train.get(j).gettype()=="I.�setosa") {
-                g2d.setColor(Color.YELLOW);
-            }
-
-            if (train.get(j).gettype()=="I.�virginica") {
-                g2d.setColor(Color.RED);
-            }
         }
         
         int[] xb = new int[trainData.size()];
@@ -463,7 +564,18 @@ public class KNN_plot extends javax.swing.JFrame {
         for(int k=0; k<trainData.size(); k++) {
             xb[k] = (int) (SCALE * x[k]);
             yb[k] = (int) (SCALE * y[k]);
-            g2d.drawLine(xb[k], yb[k], xb[k], yb[k]);
+            if ("I.�versicolor".equals(train.get(k).gettype())) {
+                g2d.setColor(Color.BLUE);
+            }
+             
+            if ("I.�setosa".equals(train.get(k).gettype())) {
+                g2d.setColor(Color.YELLOW);
+            }
+
+            if ("I.�virginica".equals(train.get(k).gettype())) {
+                g2d.setColor(Color.GREEN);
+            }
+            g2d.fillOval(xb[k], yb[k], 5, 5);
             
         }
 //        Plot2DPanel drawPanel = new Plot2DPanel();
@@ -492,7 +604,8 @@ public class KNN_plot extends javax.swing.JFrame {
     }//GEN-LAST:event_f1ActionPerformed
 
     private void f5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f5ActionPerformed
-        // TODO add your handling code here:
+        yias = 0;
+        yName = "Sepal length";
     }//GEN-LAST:event_f5ActionPerformed
 
     private void f2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f2ActionPerformed
@@ -515,6 +628,9 @@ public class KNN_plot extends javax.swing.JFrame {
     }//GEN-LAST:event_testLengthActionPerformed
 
     private void doTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doTestActionPerformed
+        
+        Graphics2D g2d = (Graphics2D)drawPanel.getGraphics();
+        
         DataSet input = new DataSet();
         double[] inputData = new double[4];
         inputData[0] = Double.parseDouble(test1.getText());
@@ -523,48 +639,171 @@ public class KNN_plot extends javax.swing.JFrame {
         inputData[3] = Double.parseDouble(test4.getText());
         input.setdata(inputData);
         
-        DataSet[] neighbors;
-        neighbors = KNN.getKNeighbors(10, train, input);
+        int xself = (int) (inputData[xias] * SCALE);
+        int yself = (int) (inputData[yias] * SCALE);
+        
+        DataSet[] neighbors = KNN.getKNeighbors(10, train, input);
+        
+        double[] xs = new double[10];
+        double[] ys = new double[10];
+        
+        for (int i = 0; i < 10; i++) {
+            xs[i]=neighbors[i].getdata()[xias];
+            ys[i]=neighbors[i].getdata()[yias];   
+        }
+         
+        int[] xsi = new int[10];
+        int[] ysi = new int[10];
+        
+        for (int j = 0; j < 10; j++) {
+           xsi[j] = (int) (SCALE * xs[j]);
+           ysi[j] = (int) (SCALE * ys[j]);
+           
+           if ("I.�versicolor".equals(neighbors[j].gettype())) {
+                g2d.setColor(Color.BLUE);
+            }
+             
+            if ("I.�setosa".equals(neighbors[j].gettype())) {
+                g2d.setColor(Color.YELLOW);
+            }
+
+            if ("I.�virginica".equals(neighbors[j].gettype())) {
+                g2d.setColor(Color.GREEN);
+            }
+            g2d.fillOval(xsi[j], ysi[j], 5, 5);
+            g2d.drawLine(xsi[j], ysi[j], xself, yself);
+        }
         
         
     }//GEN-LAST:event_doTestActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void clearTypingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearTypingActionPerformed
         test1.setText("");
         test2.setText("");
         test3.setText("");
         test4.setText("");
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_clearTypingActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void doAgainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doAgainActionPerformed
         testOne.setText("");
+        test1.setText("");
+        test2.setText("");
+        test3.setText("");
+        test4.setText("");
         xButtonGroup.clearSelection();
         yButtonGroup.clearSelection();
+        drawPanel.removeAll();
+        drawPanel.revalidate(); 
+        drawPanel.repaint();
+        
+    }//GEN-LAST:event_doAgainActionPerformed
+
+    private void testSimpleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testSimpleActionPerformed
+
+        
+        
+        int simple = Integer.parseInt(testOne.getText());
+        
+        int xt=0;
+        int yt=0;
+        
+        xt = (int)(test.get(simple).getdata()[xias] * SCALE);
+        yt = (int)(test.get(simple).getdata()[yias] * SCALE);
+        
+        Graphics2D g2d = (Graphics2D)drawPanel.getGraphics();
+        g2d.setColor(Color.RED);
+        g2d.fillOval(xt, yt, 5, 5);
+        
+        double[] xn = new double[10];
+        double[] yn = new double[10];
+        
+        DataSet[] neighbors = KNN.getKNeighbors(10, train, test.get(simple));
+        
+        for (int i = 0; i < 10; i++) {
+            xn[i]=neighbors[i].getdata()[xias];
+            yn[i]=neighbors[i].getdata()[yias];   
+        }
+         
+        int[] xni = new int[10];
+        int[] yni = new int[10];
+        
+        for (int j = 0; j < 10; j++) {
+           xni[j] = (int) (SCALE * xn[j]);
+           yni[j] = (int) (SCALE * yn[j]);
+           
+           if ("I.�versicolor".equals(neighbors[j].gettype())) {
+                g2d.setColor(Color.BLUE);
+            }
+             
+            if ("I.�setosa".equals(neighbors[j].gettype())) {
+                g2d.setColor(Color.YELLOW);
+            }
+
+            if ("I.�virginica".equals(neighbors[j].gettype())) {
+                g2d.setColor(Color.GREEN);
+            }
+            g2d.fillOval(xni[j], yni[j], 5, 5);
+            g2d.drawLine(xni[j], yni[j], xt, yt);
+        }
+        
+    }//GEN-LAST:event_testSimpleActionPerformed
+
+    private void f6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f6ActionPerformed
+        yias = 1;
+        yName = "Sepal width";
+    }//GEN-LAST:event_f6ActionPerformed
+
+    private void f7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f7ActionPerformed
+        yias = 2;
+        yName = "Petal length";
+    }//GEN-LAST:event_f7ActionPerformed
+
+    private void f8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f8ActionPerformed
+        yias = 3;
+        yName = "Petal width";
+    }//GEN-LAST:event_f8ActionPerformed
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        dispose();
+    }//GEN-LAST:event_backActionPerformed
+
+    private void clearTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearTestActionPerformed
+        testOne.setText("");
+        drawPanel.repaint(xias, xias, xias, xias);
+    }//GEN-LAST:event_clearTestActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+           
+        
+        int simple = Integer.parseInt(testOne.getText());
+        
+        int xt=0;
+        int yt=0;
+        
+        xt = (int)(test.get(simple).getdata()[xias] * SCALE);
+        yt = (int)(test.get(simple).getdata()[yias] * SCALE);
+        
+        Graphics2D g2d = (Graphics2D)drawPanel.getGraphics();
+        g2d.setColor(Color.RED);
+        g2d.fillOval(xt, yt, 5, 5);
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    
-//    public void paint() {
-//        Graphics2D g2d = (Graphics2D)drawPanel.getGraphics();
-//        g2d.setColor(Color.BLUE);
-//        double[][] points = null;
-//        for(double[] point : points) {
-//            int[] plotPoint = coordinate.projectPoint(point);
-//        }
-//        g2d.drawOval(0,0,100,100);
+    private void showTypingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showTypingActionPerformed
+        double[] inputData = new double[4];
+        inputData[0] = Double.parseDouble(test1.getText());
+        inputData[1] = Double.parseDouble(test2.getText());
+        inputData[2] = Double.parseDouble(test3.getText());
+        inputData[3] = Double.parseDouble(test4.getText());
         
-//        Point UpperLeft= getLocation();
-//        double xpoint= getX();
-//        double ypoint= getY();
+        int cx = (int) (inputData[xias] * SCALE);
+        int cy = (int) (inputData[yias] * SCALE);
         
-//        g2d.translate(getWidth()/2,getHeight()/2);
-//        g2d.scale(5.0, 5.0);
-//        g2d.drawLine();
-//        g2d.draw( new Line2D.Double(0,min*100,0,-max*100));
+        Graphics2D g2d = (Graphics2D)drawPanel.getGraphics();
+        g2d.setColor(Color.PINK);
+        g2d.fillOval(cx,cy, 5, 5);
+    }//GEN-LAST:event_showTypingActionPerformed
 
-
-        
-
-//    }
 
 
     /**
@@ -603,7 +842,11 @@ public class KNN_plot extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton back;
     private javax.swing.JButton checkLength;
+    private javax.swing.JButton clearTest;
+    private javax.swing.JButton clearTyping;
+    private javax.swing.JButton doAgain;
     private javax.swing.JButton doTest;
     private javax.swing.JPanel drawPanel;
     private javax.swing.JRadioButton f1;
@@ -615,9 +858,11 @@ public class KNN_plot extends javax.swing.JFrame {
     private javax.swing.JRadioButton f7;
     private javax.swing.JRadioButton f8;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -625,14 +870,18 @@ public class KNN_plot extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JButton showTyping;
     private javax.swing.JTextField test1;
     private javax.swing.JTextField test2;
     private javax.swing.JTextField test3;
     private javax.swing.JTextField test4;
     private javax.swing.JTextField testLength;
     private javax.swing.JTextField testOne;
+    private javax.swing.JButton testSimple;
     private javax.swing.ButtonGroup xButtonGroup;
     private javax.swing.ButtonGroup yButtonGroup;
     // End of variables declaration//GEN-END:variables
