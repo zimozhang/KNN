@@ -20,9 +20,26 @@ public class Coordinate {
     ArrayList<Point> pointsList;
     
     public Coordinate(int height, int width, int scale, ArrayList<DataSet> p1, ArrayList<DataSet> p2){
+        
+        ArrayList<DataSet> train = new ArrayList<DataSet>();
+        ArrayList<DataSet> test = new ArrayList<DataSet>();
+        train = p1;
+        test = p2;
+        
         origin = new Point(padding, height - padding);
         pointsList = new ArrayList<Point>();
         
+        int total = 0;
+        if (train != null) {
+            total = train.size();
+        }
+        
+        ArrayList<double[]> trainData = new ArrayList<double[]>();
+                
+        
+        for (int i = 0; i < total; i++) {
+            trainData.add(i, train.get(i).getdata());           
+        }
         
     }
     

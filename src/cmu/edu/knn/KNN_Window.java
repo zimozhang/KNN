@@ -439,8 +439,13 @@ public class KNN_Window extends javax.swing.JFrame {
         this.setAlwaysOnTop(false);
         Reader reader = new Reader();		
 	
-        KNN_plot plot = new KNN_plot(reader.readDataFile(trainPath.getText()),
-                reader.readDataFile(testPath.getText()));
+        ArrayList<DataSet> train = new ArrayList<DataSet>();
+        ArrayList<DataSet> test = new ArrayList<DataSet>();
+        
+        train=reader.readDataFile(trainPath.getText());
+        test=reader.readDataFile(testPath.getText());
+        
+        KNN_plot plot = new KNN_plot(train, test);
         plot.setVisible(true);
              
     }//GEN-LAST:event_plotPointActionPerformed
