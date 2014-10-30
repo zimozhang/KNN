@@ -5,19 +5,13 @@
  */
 package cmu.edu.knn;
 
-import cmu.edu.knn.DataSet;
 import java.awt.Color;
 
 import java.util.ArrayList;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Point;
-import java.util.List;
-import javax.swing.JFrame;
-import org.math.plot.*;
 
 /**
- *
+ * This is to design another window page for doing plot based one KNN result.
  * @author zimo
  */
 public class KNN_plot extends javax.swing.JFrame {
@@ -36,10 +30,10 @@ public class KNN_plot extends javax.swing.JFrame {
     
     /**
      * Creates new form KNN_plot
+     * Get data from KNN_Window, so we do not need to read the file again.
      */
     public KNN_plot(ArrayList<DataSet> p1, ArrayList<DataSet> p2) {
-//        ArrayList<DataSet> train = new ArrayList<DataSet>();
-//        ArrayList<DataSet> test = new ArrayList<DataSet>();
+
         train = p1;
         test = p2;
 
@@ -515,8 +509,7 @@ public class KNN_plot extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void checkLengthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkLengthActionPerformed
-//        ArrayList<DataSet> t = new ArrayList<DataSet>();
-//        t = d2;
+
         int l = test.size();
         testLength.setText(Integer.toString(l));
         
@@ -527,12 +520,9 @@ public class KNN_plot extends javax.swing.JFrame {
     }//GEN-LAST:event_testOneActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-//        String ex = testOne.getText();
-//        int i = Integer.parseInt(ex);
-//        DataSet[] one = KNN.getKNeighbors(100, train, test.get(i));
+
         
         Graphics2D g2d = (Graphics2D)drawPanel.getGraphics();
-//        g2d.setColor(Color.BLUE);
         int total = 0;
         if (train != null) {
             total = train.size();
@@ -546,8 +536,6 @@ public class KNN_plot extends javax.swing.JFrame {
             trainData.add(i, train.get(i).getdata());           
         }
         
-//        List<Double> xList = new ArrayList<Double>();
-//        List<Double> yList = new ArrayList<Double>();
         
         double[] x = new double[trainData.size()];
         double[] y = new double[trainData.size()];
@@ -578,24 +566,7 @@ public class KNN_plot extends javax.swing.JFrame {
             g2d.fillOval(xb[k], yb[k], 5, 5);
             
         }
-//        Plot2DPanel drawPanel = new Plot2DPanel();
-////        Plot2DPanel plot = new Plot2DPanel();
-//        drawPanel.addLinePlot("my plot", x, y);
-//        
-////        plot.addLinePlot("my plot", x, y);
-//        
-//        JFrame frame = new JFrame("a plot panel");
-//        frame.setContentPane(drawPanel);
-//        frame.setVisible(true);
-        
-//        for (int i = 0; i < total; i++) {
-//            ArrayList<double[]> points = null;
-//            points.set(i, train.get(i).getdata());
-//        }
-        
-//        for(double[] point : points) {
-//            int[] plotPoint = coordinate.projectPoint(point);
-//        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void f1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f1ActionPerformed

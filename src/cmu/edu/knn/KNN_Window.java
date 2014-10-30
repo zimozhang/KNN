@@ -5,8 +5,6 @@
  */
 package cmu.edu.knn;
 
-import java.awt.Toolkit;
-import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,7 +21,12 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
- *
+ * This class is to design a window application for KNN.
+ * This is the first pages.
+ * It has the functions that users can choose their own train and test files,
+ * and specify a location for saving predict file.
+ * Also the predict results can be showed in the GUI.
+ * It has a button to open another window interface designed in KNN_plot.java.
  * @author zimo
  */
 public class KNN_Window extends javax.swing.JFrame {
@@ -365,11 +368,8 @@ public class KNN_Window extends javax.swing.JFrame {
 	//System.out.println("Please use "+ k + " nearest neignbors to predict the Species");
 	Reader reader = new Reader();
 				
-	ArrayList<DataSet> train = reader.readDataFile(trainPath.getText());
-//        System.out.println(train);
-       
+	ArrayList<DataSet> train = reader.readDataFile(trainPath.getText());     
 	ArrayList<DataSet> test = reader.readDataFile(testPath.getText());
-//        System.out.println(test);
         
         System.out.println("Write file");
 	KNN.writeFile(predictPath.getText(), k, train, test);
@@ -456,6 +456,8 @@ public class KNN_Window extends javax.swing.JFrame {
 //        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);
 //    }
     /**
+     * Copy the main function from KNN.java,
+     * Just define data structure for saving the train and test set data.
      * @param args the command line arguments
      */
     public static void main(String args[]) {
